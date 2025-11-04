@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Charis MedSuppliers{% endblock %}
+
+{% block content %}
+
+<style>
+    .admin-hero {
+        background: linear-gradient(120deg, #004aad, #007bff);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+        border-radius: 0 0 20px 20px;
+    }
+    .admin-card {
+        border-radius: 12px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .admin-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .admin-card a {
+        text-decoration: none;
+        color: #004aad;
+        font-weight: 600;
+        display: block;
+        padding: 20px;
+    }
+    .admin-wrapper {
+        padding: 40px 0;
+    }
+</style>
+
+<!-- Admin Header -->
+<section class="admin-hero">
+    <h1>Admin Dashboard</h1>
+    <p>Manage website content and orders</p>
+</section>
+
+<!-- Dashboard Content -->
+<div class="container admin-wrapper">
+    <div class="row g-4 text-center">
+
+        <div class="col-md-4">
+            <div class="card admin-card shadow-sm">
+                <a href="{% url 'upload_product' %}">
+                    <h4>📦 Upload Product</h4>
+                    <p>Add new medical supplies</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card admin-card shadow-sm">
+                <a href="{% url 'manage_orders' %}">
+                    <h4>🧾 Manage Orders</h4>
+                    <p>View & manage orders</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card admin-card shadow-sm">
+                <a href="/admin/">
+                    <h4>⚙️ Django Admin Panel</h4>
+                    <p>Full site settings</p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

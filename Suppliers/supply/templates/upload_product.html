@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Add Product - Admin{% endblock %}
+
+{% block content %}
+
+<style>
+    .product-upload-box {
+        max-width: 650px;
+        margin: auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    }
+    .upload-title {
+        font-weight: 700;
+        color: #004aad;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .form-label {
+        font-weight: 600;
+        color: #004aad;
+    }
+    .form-control, .form-select {
+        border-radius: 10px !important;
+        padding: 10px;
+        border: 1px solid #bcd0ea;
+    }
+    .btn-submit {
+        width: 100%;
+        background: #004aad;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: none;
+        transition: 0.3s;
+    }
+    .btn-submit:hover {
+        background: #00337f;
+        transform: translateY(-2px);
+    }
+    .preview-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        border: 2px solid #e3eaff;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="product-upload-box">
+
+        <h2 class="upload-title">Add New Product</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+
+            <!-- Image Preview Area -->
+            {% if form.image %}
+            <div id="imgPreviewContainer">
+                <img id="imgPreview" class="preview-img" style="display:none;">
+            </div>
+            {% endif %}
+
+            <button class="btn-submit">Upload Product</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Image Preview Script
+    const fileInput = document.querySelector("input[type='file']");
+    const previewImg = document.getElementById("imgPreview");
+
+    if (fileInput) {
+        fileInput.addEventListener("change", () => {
+            const file = fileInput.files[0];
+            if (file) {
+                previewImg.style.display = "block";
+                previewImg.src = URL.createObjectURL(file);
+            }
+        });
+    }
+</script>
+
+{% endblock %}

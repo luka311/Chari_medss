@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+
+    <h2 class="fw-bold text-center mb-4">Edit Product</h2>
+
+    <div class="card p-4 shadow-sm rounded-4 mx-auto" style="max-width:600px;">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="text-center mt-3">
+                <button class="btn btn-primary px-4 rounded-pill fw-semibold">Update</button>
+                <a href="{% url 'products' %}" class="btn btn-secondary px-4 rounded-pill fw-semibold ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

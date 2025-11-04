@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Place Your Order</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Select Product</label>
+            <select name="product" class="form-control" required>
+                {% for p in products %}
+                <option value="{{ p.id }}">{{ p.name }} - Ksh {{ p.price }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Quantity</label>
+            <input type="number" name="quantity" class="form-control" min="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Phone Number</label>
+            <input type="text" name="phone" class="form-control" placeholder="07XXXXXXXX" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Delivery Address</label>
+            <textarea name="address" class="form-control" required></textarea>
+        </div>
+
+        <button class="btn btn-success w-100" type="submit">Submit Order</button>
+    </form>
+</div>
+{% endblock %}

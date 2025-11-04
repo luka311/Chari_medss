@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-3">My Orders</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.quantity }}</td>
+                <td><span class="badge bg-info">{{ order.status }}</span></td>
+                <td>{{ order.date|date:"M d, Y" }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No orders yet.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

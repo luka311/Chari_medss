@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Charis MedSuppliers{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section id="home"
+style="
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+url('https://images.unsplash.com/photo-1583911866134-b9e0a3b3613b?auto=format&fit=crop&w=1400&q=80');
+background-size: cover;
+background-position: center;
+">
+<div class="fade-in">
+
+    <h1 style="font-size:3rem; font-weight:700; margin-bottom:20px; color:white;">
+        Welcome to Charis MedSuppliers
+    </h1>
+
+    <p style="font-size:1.25rem; margin-bottom:30px; color:white;">
+        Trusted medical equipment & supplies in Kenya 🇰🇪
+    </p>
+
+    <a href="{% url 'products' %}"
+       style="background:#004aad; color:white; padding:14px 30px; border-radius:8px; text-decoration:none; font-size:1.2em; transition:0.3s;">
+       View Products
+    </a>
+
+    <!-- Search Bar -->
+    <form action="{% url 'products' %}" method="GET" style="max-width:400px; margin:25px auto 0;">
+        <input type="text" name="search" placeholder="Search medical supplies…"
+               style="width:100%; padding:12px; border-radius:8px; border:none; outline:none;">
+    </form>
+
+    <!-- Rotating Images -->
+    <div id="equipCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="width:250px; margin:auto;">
+      <div class="carousel-inner rounded shadow">
+
+        <div class="carousel-item active">
+          <img src="{% static 'images/qw.jpg' %}" class="d-block w-100" style="object-fit:contain; height:160px;">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'images/sf.jpg' %}" class="d-block w-100" style="object-fit:contain; height:160px;">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'images/vg.jpg' %}" class="d-block w-100" style="object-fit:contain; height:160px;">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'images/wp.jpg' %}" class="d-block w-100" style="object-fit:contain; height:160px;">
+        </div>
+
+      </div>
+    </div>
+
+</div>
+</section>
+
+<!-- QUICK LINKS -->
+<section id="quick-links" class="py-5 text-center">
+  <h3 style="margin-bottom:30px; color:#004aad; font-weight:700;">Explore Our Services</h3>
+  <a href="{% url 'products' %}" class="btn btn-outline-primary mx-2 px-4 py-2 mb-2">Products</a>
+  <a href="{% url 'services' %}" class="btn btn-outline-primary mx-2 px-4 py-2 mb-2">Services</a>
+  <a href="{% url 'order' %}" class="btn btn-outline-primary mx-2 px-4 py-2 mb-2">Order</a>
+  <a href="{% url 'contact' %}" class="btn btn-outline-primary mx-2 px-4 py-2 mb-2">Contact</a>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-5" style="background:#f8fbff;">
+  <div class="container text-center">
+    <h3 style="color:#004aad; font-weight:700;">What Our Customers Say</h3>
+    <p class="mb-4 text-muted">Trusted by hospitals, clinics & pharmacies across Kenya</p>
+
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- 1 -->
+        <div class="carousel-item active">
+          <div class="p-4 shadow rounded-4 bg-white mx-auto" style="max-width:650px;">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" class="rounded-circle mb-3" style="width:80px; height:80px; object-fit:cover;">
+            <p>"Excellent service & fast delivery every time. Highly recommended!"</p>
+            <h6 class="fw-bold">Sarah M.</h6>
+            <small class="text-muted">Nurse – Nairobi</small>
+            <div style="color:#ffbf00;">★★★★★</div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="carousel-item">
+          <div class="p-4 shadow rounded-4 bg-white mx-auto" style="max-width:650px;">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" class="rounded-circle mb-3" style="width:80px; height:80px; object-fit:cover;">
+            <p>"Very reliable supplier. My clinic always gets quality equipment!"</p>
+            <h6 class="fw-bold">Dr. Kamau</h6>
+            <small class="text-muted">Clinic Owner – Kiambu</small>
+            <div style="color:#ffbf00;">★★★★★</div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="carousel-item">
+          <div class="p-4 shadow rounded-4 bg-white mx-auto" style="max-width:650px;">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="rounded-circle mb-3" style="width:80px; height:80px; object-fit:cover;">
+            <p>"Affordable prices and fast delivery. I trust Charis MedSuppliers!"</p>
+            <h6 class="fw-bold">Kelvin C.</h6>
+            <small class="text-muted">Pharmacy – Eldoret</small>
+            <div style="color:#ffbf00;">★★★★★</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Fade Animation -->
+<style>
+.fade-in { animation: fadeIn 1.8s ease-in-out; }
+@keyframes fadeIn { 0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);} }
+</style>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/254741188424?text=Hello%20Charis,%20I%20need%20medical%20supplies." target="_blank" id="whatsappBtn">💬</a>
+
+<style>
+#whatsappBtn {
+position:fixed;bottom:22px;right:22px;background:#25D366;color:white;
+font-size:28px;width:58px;height:58px;border-radius:50%;display:flex;
+justify-content:center;align-items:center;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.3);
+z-index:9999;transition:0.3s ease;animation:pulse 1.8s infinite;}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
+#whatsappBtn:hover{transform:scale(1.15);}
+</style>
+
+{% endblock %}

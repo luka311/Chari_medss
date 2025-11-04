@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Manage Orders</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.user.username }}</td>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.phone }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="order_id" value="{{ order.id }}">
+
+                        <select name="status" class="form-select form-select-sm">
+                            <option {% if order.status == "Pending" %}selected{% endif %}>Pending</option>
+                            <option {% if order.status == "Confirmed" %}selected{% endif %}>Confirmed</option>
+                            <option {% if order.status == "Delivered" %}selected{% endif %}>Delivered</option>
+                        </select>
+
+                        <button class="btn btn-success btn-sm mt-1">Save</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

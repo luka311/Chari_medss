@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up – Charis MedSuppliers</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f1ff, #c7dcff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .auth-box {
+            background: #ffffff;
+            padding: 35px;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        h2 {
+            color: #004aad;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #bcd0e6;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #004aad;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #004aad;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #00337a;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        a {
+            color: #004aad;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="auth-box">
+
+    <h2>Create Account</h2>
+
+    {% if form.errors %}
+        <p style="color:red; font-size:14px;">Please fix the errors</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <input type="{{ field.field.widget.input_type }}"
+                   name="{{ field.name }}"
+                   placeholder="{{ field.label }}"
+                   class="form-control"
+                   required>
+        {% endfor %}
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+</body>
+</html>
+
